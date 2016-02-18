@@ -31,6 +31,14 @@ class TwitterClient: BDBOAuth1SessionManager {
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
             
+            for tweet in tweets {
+                print(tweet.user?.profileImageUrl)
+                print(tweet.user?.name)
+                print("@" + (tweet.user?.screenName)!)
+                print(tweet.text)
+                print(tweet.createdAtString)
+                print("---")
+            }
             completion(tweets: tweets, error: nil)
             }, failure: { (operation: NSURLSessionDataTask?, error:NSError!) -> Void in
                 print("Error getting home time line")

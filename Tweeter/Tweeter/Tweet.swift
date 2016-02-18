@@ -17,11 +17,18 @@ class Tweet: NSObject {
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
-        createdAtString = dictionary["created_at"] as? String // need to formatdate
+        createdAtString = dictionary["created_at"] as? String // need to format date
         
         let formatter = NSDateFormatter() // really expensive
+        //formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
+        
+        let test = NSDateFormatter()
+        test.dateFormat = "M/d/yy - h:mm a"
+        
+        createdAtString = test.stringFromDate(createdAt!)
+        //print(dateString)
         
     }
     
