@@ -20,6 +20,7 @@ class User: NSObject {
     var tagLine: String?
     var dictionary: NSDictionary?
     
+    // constructor
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
