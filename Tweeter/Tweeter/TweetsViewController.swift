@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import AFNetworking
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet]?
 
+    @IBOutlet weak var timelineTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        timelineTableView.dataSource = self
+        timelineTableView.delegate = self
 
         // Do any additional setup after loading the view.
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) ->() in
             self.tweets = tweets
+            self.timelineTableView.reloadData()
             // tweet.favorite
             // reload table view
         })
@@ -30,6 +36,26 @@ class TweetsViewController: UIViewController {
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    
+    func tableView(timelineTableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = timelineTableView.dequeueReusableCellWithIdentifier("timelineTweet", forIndexPath: indexPath) as! TweetCell
+        let tweet = self.tweets![indexPath.row]
+        let profileImageURL = NSURL(string: (tweet.user?.profileImageUrl)!)
+        cell.profileImage.setImageWithURL(profileImageURL!)
+        cell.name.text = tweet.user?.name
+        cell.screenName.text = tweet.user?.screenName
+        cell.timestamp.text = tweet.createdAtString
+        cell.tweetText.text = tweet.text
+        return cell
+    }
+    
+    func tableView(timelineTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tweets = tweets {
+            return tweets.count
+        } else {
+            return 0
+        }
     }
 
     /*
