@@ -25,13 +25,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tweets = tweets
             self.timelineTableView.reloadData()
             // tweet.favorite
-            // reload table view
         })
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        timelineTableView.insertSubview(refreshControl, atIndex: 0)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) ->() in
+            self.tweets = tweets
+            self.timelineTableView.reloadData()
+            refreshControl.endRefreshing()
+        })
     }
     
     @IBAction func onLogout(sender: AnyObject) {
