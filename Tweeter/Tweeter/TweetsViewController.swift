@@ -54,6 +54,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(timelineTableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = timelineTableView.dequeueReusableCellWithIdentifier("timelineTweet", forIndexPath: indexPath) as! TweetCell
         let tweet = self.tweets![indexPath.row]
+        cell.tweet = tweet
         let profileImageURL = NSURL(string: (tweet.user?.profileImageUrl)!)
         cell.profileImage.setImageWithURL(profileImageURL!)
         cell.name.text = tweet.user?.name
@@ -62,6 +63,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tweetText.text = tweet.text
         cell.retweetLabel.text = String(Int(tweet.retweetCount!))
         cell.likeLabel.text = String(Int(tweet.likeCount!))
+        
+        let retweetTapAction = UITapGestureRecognizer(target: self, action: "retweet:")
+        cell.retweetImageView.tag = indexPath.row
+        cell.retweetImageView.userInteractionEnabled = true
+        cell.retweetImageView.addGestureRecognizer(retweetTapAction)
+        if tweet.hasRetweeted{
+            cell.retweetImageView.highlighted = true
+        }
+        
+        cell.selectionStyle = .None
+        
         return cell
     }
     
@@ -72,6 +84,54 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return 0
         }
     }
+    
+    func retweet(sender: UITapGestureRecognizer){
+        if sender.state != .Ended{
+            return
+        }
+        
+        let index = sender.view?.tag
+        if let index = index{
+            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
+            if (!cell.tweet!.hasRetweeted){
+                TwitterClient.sharedInstance.retweet(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
+                    if (error == nil){
+                        print("Inside inside retweet")
+                        self.tweets![index].retweetCount! += 1
+                        self.tweets![index].hasRetweeted = true
+                        cell.tweet!.text = String(Int(cell.retweetLabel.text!)! + 1)
+                        cell.tweet!.hasRetweeted = true
+                        cell.retweetImageView.highlighted = true
+                    }else{
+                        print("Retweet fail: \(error!.description)")
+                    }
+                })
+            }
+        }
+    }
+    
+//    func like(sender: UITapGestureRecognizer){
+//        if sender.state != .Ended{
+//            return
+//        }
+//        let index = sender.view?.tag
+//        if let index = index{
+//            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
+//            if (!cell.tweet!.hasFavorated){
+//                TwitterClient.sharedInstance.favorite(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
+//                    if (error == nil){
+//                        self.tweets![index].favorite_count! += 1
+//                        self.tweets![index].hasFavorated = true
+//                        cell.favoriteCount.text = String(Int(cell.favoriteCount.text!)! + 1)
+//                        cell.tweet!.hasFavorated = true
+//                        cell.favorateImage.highlighted = true
+//                    }else{
+//                        print("favorated fail: \(error!.description)")
+//                    }
+//                })
+//            }
+//        }
+//    }
 
     /*
     // MARK: - Navigation

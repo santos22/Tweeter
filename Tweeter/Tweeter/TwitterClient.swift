@@ -49,14 +49,32 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func retweet(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) ->()) {
-        TwitterClient.sharedInstance.POST("1.1/statuses/retweet/243149503589400576.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
-            //print("user: \(response)")
-            let user = User(dictionary: response as! NSDictionary)
-            User.currentUser = user // persist user as current user
-            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                print("Error retweeting")
-        })
+//    func retweet(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) ->()) {
+//        TwitterClient.sharedInstance.POST("1.1/statuses/retweet/243149503589400576.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+//            //print("user: \(response)")
+//            let user = User(dictionary: response as! NSDictionary)
+//            User.currentUser = user // persist user as current user
+//            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+//                print("Error retweeting")
+//        })
+//    }
+    
+    func retweet(tweetID: String,params: NSDictionary?, completion: (response: NSDictionary?,error: NSError?) -> ()){
+        TwitterClient.sharedInstance.POST("1.1/statuses/retweet/\(tweetID).json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            completion(response: response as? NSDictionary,error: nil)
+            })
+            { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                completion(response: nil,error: error)
+        }
+    }
+    
+    func like(tweetID: String,params: NSDictionary?, completion: (response: NSDictionary?,error: NSError?) -> ()){
+        TwitterClient.sharedInstance.POST("https://api.twitter.com/1.1/favorites/create.json?id=\(tweetID)", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+            completion(response: response as? NSDictionary,error: nil)
+            })
+            { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                completion(response: nil,error: error)
+        }
     }
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
