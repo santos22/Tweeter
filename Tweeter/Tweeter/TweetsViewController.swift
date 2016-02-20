@@ -61,8 +61,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.screenName.text = tweet.user?.screenName
         cell.timestamp.text = tweet.createdAtString
         cell.tweetText.text = tweet.text
-        cell.retweetLabel.text = String(Int(tweet.retweetCount!))
-        cell.likeLabel.text = String(Int(tweet.likeCount!))
+        cell.retweetLabel.text = String(tweet.retweetCount!)
+        cell.likeLabel.text = String(tweet.likeCount!)
         
         let retweetTapAction = UITapGestureRecognizer(target: self, action: "retweet:")
         cell.retweetImageView.tag = indexPath.row
@@ -96,10 +96,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if (!cell.tweet!.hasRetweeted){
                 TwitterClient.sharedInstance.retweet(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
                     if (error == nil){
-                        print("Inside inside retweet")
                         self.tweets![index].retweetCount! += 1
                         self.tweets![index].hasRetweeted = true
-                        cell.tweet!.text = String(Int(cell.retweetLabel.text!)! + 1)
+                        cell.retweetLabel!.text = String(Int(cell.retweetLabel.text!)! + 1)
                         cell.tweet!.hasRetweeted = true
                         cell.retweetImageView.highlighted = true
                     }else{

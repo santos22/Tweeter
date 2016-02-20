@@ -18,8 +18,10 @@ class Tweet: NSObject {
     var tweetID: String?
     var hasRetweeted = false
     var hasLiked = false
+    var dictionary: NSDictionary
     
     init(dictionary: NSDictionary) {
+        self.dictionary = dictionary
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         retweetCount = dictionary["retweet_count"] as? Int
