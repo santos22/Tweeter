@@ -11,12 +11,16 @@ import UIKit
 class Tweet: NSObject {
     var user: User? // author
     var text: String?
+    var retweetCount: NSNumber?
+    var likeCount: NSNumber?
     var createdAtString: String?
     var createdAt: NSDate?
     
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
+        retweetCount = dictionary["retweet_count"] as? NSNumber
+        likeCount = dictionary["favorite_count"] as? NSNumber
         createdAtString = dictionary["created_at"] as? String // need to format date
         
         let formatter = NSDateFormatter() // really expensive

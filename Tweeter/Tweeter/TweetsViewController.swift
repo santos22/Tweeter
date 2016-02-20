@@ -12,7 +12,7 @@ import AFNetworking
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet]?
-
+    
     @IBOutlet weak var timelineTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.screenName.text = tweet.user?.screenName
         cell.timestamp.text = tweet.createdAtString
         cell.tweetText.text = tweet.text
+        cell.retweetLabel.text = String(Int(tweet.retweetCount!))
+        cell.likeLabel.text = String(Int(tweet.likeCount!))
         return cell
     }
     
