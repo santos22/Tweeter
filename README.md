@@ -2,7 +2,7 @@
 
 **Tweeter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: 20< hours spent in total
 
 ## User Stories
 
@@ -26,20 +26,23 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
+1. Creating the User and Tweet classes was extremely helpful, but I would like to go over how to properly create and use this Swift pattern for future reference :-)
 2. 
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/0U1yzvr.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/gFIxNTW.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+1. I was able to apply AutoLayout to main portions of a tweet MINUS the retweet and like/favorite views...placing these images on the Tweet cell showed up small as I resized them, however, whenever I applied AutoLayout constraints to the retweet and like/favorite views, they would be extremely large.
+2.
 
 ## License
 
