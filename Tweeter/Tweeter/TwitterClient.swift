@@ -30,34 +30,12 @@ class TwitterClient: BDBOAuth1SessionManager {
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) ->()) {
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-            //print(response)
-//            for tweet in tweets {
-//                print(Int(tweet.retweetCount!))
-//                print(Int(tweet.likeCount!))
-//                print(tweet.user?.profileImageUrl)
-//                print(tweet.user?.name)
-//                print("@" + (tweet.user?.screenName)!)
-//                print(tweet.text)
-//                print(tweet.createdAtString)
-//                print(tweet.user?.tagLine)
-//                print("---")
-//            }
             completion(tweets: tweets, error: nil)
             }, failure: { (operation: NSURLSessionDataTask?, error:NSError!) -> Void in
                 print("Error getting home time line")
                 completion(tweets: nil, error: error)
         })
     }
-    
-//    func retweet(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) ->()) {
-//        TwitterClient.sharedInstance.POST("1.1/statuses/retweet/243149503589400576.json", parameters: nil, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
-//            //print("user: \(response)")
-//            let user = User(dictionary: response as! NSDictionary)
-//            User.currentUser = user // persist user as current user
-//            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-//                print("Error retweeting")
-//        })
-//    }
     
     func retweet(tweetID: String,params: NSDictionary?, completion: (response: NSDictionary?,error: NSError?) -> ()){
         TwitterClient.sharedInstance.POST("1.1/statuses/retweet/\(tweetID).json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in

@@ -72,6 +72,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.retweetImageView.highlighted = true
         }
         
+        let likeTapAction = UITapGestureRecognizer(target: self, action: "like:")
+        cell.likeImageView.tag = indexPath.row
+        cell.likeImageView.userInteractionEnabled = true
+        cell.likeImageView.addGestureRecognizer(likeTapAction)
+        if tweet.hasLiked{
+            cell.retweetImageView.highlighted = true
+        }
+        
         cell.selectionStyle = .None
         
         return cell
@@ -102,35 +110,36 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         cell.tweet!.hasRetweeted = true
                         cell.retweetImageView.highlighted = true
                     }else{
-                        print("Retweet fail: \(error!.description)")
+                        print("Retweet failed: \(error!.description)")
                     }
                 })
             }
         }
     }
     
-//    func like(sender: UITapGestureRecognizer){
-//        if sender.state != .Ended{
-//            return
-//        }
-//        let index = sender.view?.tag
-//        if let index = index{
-//            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
-//            if (!cell.tweet!.hasFavorated){
-//                TwitterClient.sharedInstance.favorite(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
-//                    if (error == nil){
-//                        self.tweets![index].favorite_count! += 1
-//                        self.tweets![index].hasFavorated = true
-//                        cell.favoriteCount.text = String(Int(cell.favoriteCount.text!)! + 1)
-//                        cell.tweet!.hasFavorated = true
-//                        cell.favorateImage.highlighted = true
-//                    }else{
-//                        print("favorated fail: \(error!.description)")
-//                    }
-//                })
-//            }
-//        }
-//    }
+    func like(sender: UITapGestureRecognizer){
+        if sender.state != .Ended{
+            return
+        }
+        
+        let index = sender.view?.tag
+        if let index = index{
+            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
+            if (!cell.tweet!.hasRetweeted){
+                TwitterClient.sharedInstance.retweet(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
+                    if (error == nil){
+                        self.tweets![index].likeCount! += 1
+                        self.tweets![index].hasLiked = true
+                        cell.likeLabel!.text = String(Int(cell.likeLabel.text!)! + 1)
+                        cell.tweet!.hasLiked = true
+                        cell.likeImageView.highlighted = true
+                    }else{
+                        print("Like failed: \(error!.description)")
+                    }
+                })
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
