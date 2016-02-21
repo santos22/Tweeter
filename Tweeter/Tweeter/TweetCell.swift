@@ -25,11 +25,15 @@ class TweetCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        profileImage.layer.cornerRadius = 3
+        profileImage.clipsToBounds = true
         
-//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("retweetTapped:"))
-//        retweetImageView.userInteractionEnabled = true
-//        retweetImageView.addGestureRecognizer(tapGestureRecognizer)
-        // Initialization code
+//        retweetImageView.contentMode = UIViewContentMode.ScaleAspectFill
+//        retweetImageView.clipsToBounds = true
+//        
+//        likeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+//        likeImageView.clipsToBounds = true
+        
         tweetText.preferredMaxLayoutWidth = tweetText.frame.size.width
     }
     
@@ -37,17 +41,7 @@ class TweetCell: UITableViewCell {
         super.layoutSubviews()
         tweetText.preferredMaxLayoutWidth = tweetText.frame.size.width
     }
-    
-//    func retweetTapped(img: AnyObject) {
-//        TwitterClient.sharedInstance.retweet(nil, completion: { (tweets, error) ->() in
-//            self.tweets = tweets
-//            
-//            for tweet in tweets! {
-//                print(tweet.text)
-//            }
-//        })
-//        print("Tapped")
-//    }
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

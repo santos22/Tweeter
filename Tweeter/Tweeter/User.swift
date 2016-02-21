@@ -24,8 +24,9 @@ class User: NSObject {
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
+        let at = "@"
         name = dictionary["name"] as? String
-        screenName = dictionary["screen_name"] as? String
+        screenName = "\(at)" + String(dictionary["screen_name"] as! String)
         profileImageUrl = dictionary["profile_image_url"] as? String
         tagLine = dictionary["description"] as? String
     }
