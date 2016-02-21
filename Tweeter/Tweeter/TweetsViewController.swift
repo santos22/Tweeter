@@ -80,7 +80,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.retweetImageView.highlighted = true
         }
         
-        cell.selectionStyle = .None
+        //cell.selectionStyle = .None
         
         return cell
     }
@@ -126,7 +126,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let index = index{
             let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
             if (!cell.tweet!.hasRetweeted){
-                TwitterClient.sharedInstance.retweet(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
+                TwitterClient.sharedInstance.like(tweets![index].tweetID!, params: nil, completion: { (response, error) -> () in
                     if (error == nil){
                         self.tweets![index].likeCount! += 1
                         self.tweets![index].hasLiked = true
