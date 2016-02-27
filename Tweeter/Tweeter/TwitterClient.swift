@@ -92,4 +92,23 @@ class TwitterClient: BDBOAuth1SessionManager {
                 self.loginCompletion?(user: nil, error: error)
         }
     }
+    
+    func compose(tweet: String, params: NSDictionary?, completion: (tweet: Tweet?,error :NSError?)->()) {
+        var parameters = [String: AnyObject]()
+        parameters["status"] = tweet
+        if let params = params{
+            for (key,value) in params{
+                parameters[key as! String] = value
+            }
+        }
+        TwitterClient.sharedInstance.POST("1.1/statuses/update.json", parameters: parameters, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            
+            completion(tweet: Tweet(dictionary: (response as! NSDictionary)),error: nil)
+            
+            }) { (operation: NSURLSessionDataTask?, error:NSError) -> Void in
+                
+                completion(tweet: nil,error: error)
+        }
+        
+    }
 }
