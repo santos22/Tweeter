@@ -9,6 +9,7 @@
 import UIKit
 import AFNetworking
 
+weak var tweetViewControllerReference: TweetsViewController?
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet]?
@@ -16,7 +17,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var timelineTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tweetViewControllerReference = self
         timelineTableView.dataSource = self
         timelineTableView.delegate = self
         timelineTableView.rowHeight = UITableViewAutomaticDimension
@@ -49,6 +50,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
+    }
+    
+    @IBAction func composeTweet(sender: AnyObject) {
+        //
     }
     
     func tableView(timelineTableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -140,15 +145,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if let cell = sender as? TweetTableViewCell {
+//            if let userViewController = segue.destinationViewController as? UserViewController{
+//                userViewController.user = cell.tweet?.user
+//                print("user View")
+//            }
+//            if let detailViewController = segue.destinationViewController as? DetailTweetViewController{
+//                detailViewController.tweet = tweets![tableView.indexPathForCell(cell)!.row]
+//                print("detail View")
+//            }
+//        }else {
+//            if let userViewController = segue.destinationViewController as? UserViewController{
+//                userViewController.user = User.currentUser!
+//            }
+//        }
+//        
+//    }
 
 }

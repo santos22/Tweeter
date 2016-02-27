@@ -13,6 +13,7 @@
 		0426F3411C71573100C08643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0426F3401C71573100C08643 /* Assets.xcassets */; };
 		0426F3441C71573100C08643 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0426F3421C71573100C08643 /* LaunchScreen.storyboard */; };
 		0426F3501C715B4100C08643 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0426F34F1C715B4100C08643 /* TwitterClient.swift */; };
+		047F470C1C8170E100D37448 /* ComposeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047F470B1C8170E000D37448 /* ComposeTweetViewController.swift */; };
 		048711C61C761B640062778C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048711C51C761B630062778C /* User.swift */; };
 		048711C81C761B700062778C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048711C71C761B700062778C /* Tweet.swift */; };
 		048711CA1C7639A60062778C /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048711C91C7639A60062778C /* TweetsViewController.swift */; };
@@ -30,6 +31,7 @@
 		0426F3451C71573100C08643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0426F34B1C715A8600C08643 /* Tweeter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tweeter-Bridging-Header.h"; sourceTree = "<group>"; };
 		0426F34F1C715B4100C08643 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
+		047F470B1C8170E000D37448 /* ComposeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTweetViewController.swift; sourceTree = "<group>"; };
 		048711C51C761B630062778C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		048711C71C761B700062778C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		048711C91C7639A60062778C /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				0426F3451C71573100C08643 /* Info.plist */,
 				0426F34B1C715A8600C08643 /* Tweeter-Bridging-Header.h */,
 				048711C91C7639A60062778C /* TweetsViewController.swift */,
+				047F470B1C8170E000D37448 /* ComposeTweetViewController.swift */,
 			);
 			path = Tweeter;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				048711C61C761B640062778C /* User.swift in Sources */,
 				048711CC1C767C450062778C /* TweetCell.swift in Sources */,
+				047F470C1C8170E100D37448 /* ComposeTweetViewController.swift in Sources */,
 				048711C81C761B700062778C /* Tweet.swift in Sources */,
 				048711CA1C7639A60062778C /* TweetsViewController.swift in Sources */,
 				0426F33C1C71573100C08643 /* ViewController.swift in Sources */,
