@@ -85,7 +85,18 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.retweetImageView.highlighted = true
         }
         
-        //cell.selectionStyle = .None
+        cell.selectionStyle = .None
+        
+        let userProfileTapAction = UITapGestureRecognizer(target: self, action: "viewProfile:")
+        cell.profileImage.tag = indexPath.row
+        cell.profileImage.userInteractionEnabled = true
+        cell.profileImage.addGestureRecognizer(userProfileTapAction)
+        
+        //set up the tweet tap
+        let viewTweet = UITapGestureRecognizer(target: self, action: "viewTweetDeets:")
+        cell.userInteractionEnabled = true
+        cell.tag = indexPath.row
+        cell.addGestureRecognizer(viewTweet)
         
         return cell
     }
@@ -146,23 +157,44 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    func viewProfile(sender: UITapGestureRecognizer){
+        if sender.state != .Ended{
+            return
+        }
+        let index = sender.view?.tag
+        if let index = index{
+            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
+            self.performSegueWithIdentifier("ProfileView", sender: cell);
+        }
+    }
+    
+    func viewTweetDeets(sender: UITapGestureRecognizer){
+        if sender.state != .Ended{
+            return
+        }
+        let index = sender.view?.tag
+        if let index = index{
+            let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
+            self.performSegueWithIdentifier("DetailTweet", sender: cell)
+        }
+    }
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if let cell = sender as? TweetTableViewCell {
-//            if let userViewController = segue.destinationViewController as? UserViewController{
-//                userViewController.user = cell.tweet?.user
-//                print("user View")
-//            }
-//            if let detailViewController = segue.destinationViewController as? DetailTweetViewController{
-//                detailViewController.tweet = tweets![tableView.indexPathForCell(cell)!.row]
-//                print("detail View")
-//            }
-//        }else {
-//            if let userViewController = segue.destinationViewController as? UserViewController{
-//                userViewController.user = User.currentUser!
-//            }
-//        }
-//        
-//    }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let cell = sender as? TweetCell {
+            if let profileViewController = segue.destinationViewController as? ProfileViewController{
+                profileViewController.user = cell.tweet?.user
+                print("Profile View")
+            }
+            if let detailViewController = segue.destinationViewController as? TweetDetailsViewController{
+                detailViewController.tweet = tweets![timelineTableView.indexPathForCell(cell)!.row]
+                print("Tweet Details View")
+            }
+        }else {
+            if let profileViewController = segue.destinationViewController as? ProfileViewController{
+                profileViewController.user = User.currentUser!
+            }
+        }
+        
+    }
 }

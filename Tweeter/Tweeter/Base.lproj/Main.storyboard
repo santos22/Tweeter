@@ -200,6 +200,44 @@
             </objects>
             <point key="canvasLocation" x="1393" y="388"/>
         </scene>
+        <!--Tweet Details View Controller-->
+        <scene sceneID="Zvt-De-LXy">
+            <objects>
+                <viewController storyboardIdentifier="TweetDetailsView" id="v9t-OQ-bCm" customClass="TweetDetailsViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8pv-gj-Qek"/>
+                        <viewControllerLayoutGuide type="bottom" id="hnc-jT-exV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GEM-jQ-YuG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eFY-vd-cL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="388"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="554-tL-vLp">
+            <objects>
+                <viewController storyboardIdentifier="ProfileView" id="cwl-Pl-waD" customClass="ProfileViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7cg-Oc-v47"/>
+                        <viewControllerLayoutGuide type="bottom" id="cQn-4e-RBo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sXu-Tn-0zs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GjD-Cw-S6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2129" y="388"/>
+        </scene>
     </scenes>
     <resources>
         <image name="like-action" width="54" height="72"/>
