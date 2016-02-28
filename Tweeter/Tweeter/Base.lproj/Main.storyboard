@@ -158,6 +158,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="timelineTableView" destination="gnT-mL-D1j" id="Nb0-ge-cye"/>
+                        <segue destination="v9t-OQ-bCm" kind="show" identifier="detailView" id="gFT-cj-JfJ"/>
+                        <segue destination="cwl-Pl-waD" kind="show" identifier="profileView" id="6zL-QO-iI4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWb-sP-J6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eFY-vd-cL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771" y="388"/>
+            <point key="canvasLocation" x="1393" y="-260"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="554-tL-vLp">
@@ -250,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GjD-Cw-S6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2129" y="388"/>
+            <point key="canvasLocation" x="1393" y="1028"/>
         </scene>
     </scenes>
     <resources>

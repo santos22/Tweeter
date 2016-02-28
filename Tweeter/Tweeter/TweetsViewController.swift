@@ -164,7 +164,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let index = sender.view?.tag
         if let index = index{
             let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
-            self.performSegueWithIdentifier("ProfileView", sender: cell);
+            self.performSegueWithIdentifier("profileView", sender: cell);
         }
     }
     
@@ -175,7 +175,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let index = sender.view?.tag
         if let index = index{
             let cell = timelineTableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TweetCell
-            self.performSegueWithIdentifier("DetailTweet", sender: cell)
+            self.performSegueWithIdentifier("detailView", sender: cell)
         }
     }
     
@@ -197,4 +197,34 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        
+//        let cell = sender as! TweetCell
+//        let indexPath = timelineTableView.indexPathForCell(cell)
+//        
+//        let tweetDetailsViewController = segue.destinationViewController as! TweetDetailsViewController
+//        tweetDetailsViewController.tweet = cell.tweet
+//        timelineTableView.deselectRowAtIndexPath(indexPath!, animated: true)
+//        
+//        if segue.identifier == "DetailTweet" {
+//            let cell = sender as! TweetCell
+//            
+//            let view = cell.contentView
+//            view.layer.opacity = 0.1
+//            UIView.animateWithDuration(1.4) {
+//                view.layer.opacity = 1
+//            }
+//            if let indexPath = timelineTableView.indexPathForCell(cell) {
+//                let tweetDetailsViewController = segue.destinationViewController as! TweetDetailsViewController
+//                let tweet = tweets![indexPath.row] // unwraps
+//                print(tweet.user)
+//                tweetDetailsViewController.tweet = cell.tweet
+//                timelineTableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            }
+//        }
+//    }
 }
