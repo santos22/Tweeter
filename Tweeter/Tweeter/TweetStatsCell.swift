@@ -10,7 +10,17 @@ import UIKit
 
 class TweetStatsCell: UITableViewCell {
     
-    var tweet: Tweet!
+    @IBOutlet weak var retweetCount: UILabel!
+    @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var likeCount: UILabel!
+    @IBOutlet weak var llikeLabel: UILabel!
+    
+    var tweet: Tweet? {
+        didSet {
+            retweetCount.text = String(tweet!.retweetCount!)
+            likeCount.text = String(tweet!.likeCount!)
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

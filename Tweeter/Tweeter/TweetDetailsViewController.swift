@@ -22,16 +22,16 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         tableView.dataSource = self
         tableView.delegate = self
         
-        if let tweet = self.tweet {
-            print(tweet.user!.profileImageUrl)
-            print(tweet.user?.name)
-            print(tweet.user?.screenName)
-            print(tweet.text)
-            print(tweet.createdAtString)
-            print(tweet.likeCount)
-            print(tweet.retweetCount)
-            
-        }
+//        if let tweet = self.tweet {
+//            print(tweet.user!.profileImageUrl)
+//            print(tweet.user?.name)
+//            print(tweet.user?.screenName)
+//            print(tweet.text)
+//            print(tweet.createdAtString)
+//            print(tweet.likeCount)
+//            print(tweet.retweetCount)
+//            
+//        }
 
         // Do any additional setup after loading the view.
     }
