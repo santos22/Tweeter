@@ -19,6 +19,7 @@ class User: NSObject {
     var profileImageUrl: String?
     var tagLine: String?
     var dictionary: NSDictionary?
+    var userID: String?
     
     // constructor
     init(dictionary: NSDictionary) {
@@ -29,6 +30,7 @@ class User: NSObject {
         screenName = "\(at)" + String(dictionary["screen_name"] as! String)
         profileImageUrl = dictionary["profile_image_url"] as? String
         tagLine = dictionary["description"] as? String
+        userID = dictionary["id_str"] as? String
     }
     
     func logout() {

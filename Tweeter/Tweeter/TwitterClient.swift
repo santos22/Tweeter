@@ -28,13 +28,26 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) ->()) {
-        GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+        TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
             let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
             completion(tweets: tweets, error: nil)
             }, failure: { (operation: NSURLSessionDataTask?, error:NSError!) -> Void in
                 print("Error getting home time line")
                 completion(tweets: nil, error: error)
         })
+    }
+    
+    func userTimelineWithParams(id: String, params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        // getting timeline data
+        GET("1.1/statuses/user_timeline.json?user_id=\(id)&count=1", parameters: params, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+            print(response)
+            completion(tweets: tweets, error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("There was an error getting the home timeline: \(error.description)")
+                completion(tweets: nil, error: error)
+        })
+        
     }
     
     func retweet(tweetID: String,params: NSDictionary?, completion: (response: NSDictionary?,error: NSError?) -> ()){

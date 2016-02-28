@@ -29,6 +29,12 @@ class TweetDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func goBack(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! TweetsViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

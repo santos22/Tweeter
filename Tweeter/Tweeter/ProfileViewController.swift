@@ -12,9 +12,22 @@ class ProfileViewController: UIViewController {
     
     var user:User?
     var tweets:[Tweet]?
+    
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let user = self.user{
+            print(user.userID)
+            TwitterClient.sharedInstance.userTimelineWithParams(user.userID!, params: nil) { (tweets, error) -> () in
+                self.tweets = tweets
+                //print(tweets)
+                //self.tableView.reloadData()
+            }
+            
+            //self.navigationItem.title = user.screenName!
+        }
 
         // Do any additional setup after loading the view.
     }

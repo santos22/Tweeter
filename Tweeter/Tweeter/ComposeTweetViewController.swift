@@ -59,7 +59,7 @@ class ComposeTweetViewController: UIViewController {
                 //self.navigationController?.popViewControllerAnimated(true)
                 
             }else{
-                let alert = UIAlertController(title: nil, message: "Tweet Update Failed", preferredStyle: .Alert)
+                let alert = UIAlertController(title: nil, message: "Tweet could not be sent.", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: nil))
                 self.presentViewController(alert,animated: true,completion: nil)
             }
