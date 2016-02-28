@@ -10,10 +10,21 @@ import UIKit
 
 class TweetDetailsViewController: UIViewController {
     
-    var tweet: Tweet?
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let tweet = self.tweet {
+            print(tweet.user!.profileImageUrl)
+            print(tweet.user?.name)
+            print(tweet.user?.screenName)
+            print(tweet.text)
+            print(tweet.createdAtString)
+            print(tweet.likeCount)
+            print(tweet.retweetCount)
+            
+        }
 
         // Do any additional setup after loading the view.
     }
