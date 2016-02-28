@@ -42,6 +42,12 @@ class ComposeTweetViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelTweet(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! TweetsViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func sendTweet(sender: AnyObject) {
         TwitterClient.sharedInstance.compose(composeTextView.text, params: nil) { (tweet, error) -> () in
             if (error == nil){
