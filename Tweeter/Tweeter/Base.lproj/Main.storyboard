@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -173,7 +174,7 @@
         <!--Compose Tweet View Controller-->
         <scene sceneID="3GZ-v3-XE3">
             <objects>
-                <viewController id="Xwv-Cx-joG" customClass="ComposeTweetViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComposeTweetViewController" id="Xwv-Cx-joG" customClass="ComposeTweetViewController" customModule="Tweeter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ero-71-ZCo"/>
                         <viewControllerLayoutGuide type="bottom" id="BfN-gj-MQQ"/>
@@ -253,34 +254,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g28-EB-8wU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g28-EB-8wU">
                                                     <rect key="frame" x="8" y="0.0" width="43" height="44"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNC-DT-o00">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="First Last" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNC-DT-o00">
                                                     <rect key="frame" x="59" y="0.0" width="63" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-iP-qVV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="@username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-iP-qVV">
                                                     <rect key="frame" x="59" y="16" width="67" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tweet content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gte-63-cpg">
-                                                    <rect key="frame" x="8" y="51" width="128" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet content" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gte-63-cpg">
+                                                    <rect key="frame" x="8" y="51" width="304" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc3-aa-xNs">
-                                                    <rect key="frame" x="8" y="83" width="63" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc3-aa-xNs">
+                                                    <rect key="frame" x="8" y="89" width="63" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.45882352939999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Gte-63-cpg" secondAttribute="trailing" constant="8" id="1Hn-aY-5d0"/>
+                                                <constraint firstItem="Gte-63-cpg" firstAttribute="top" secondItem="g28-EB-8wU" secondAttribute="bottom" constant="7" id="1yr-M7-3CK"/>
+                                                <constraint firstItem="g28-EB-8wU" firstAttribute="top" secondItem="s9d-1Y-yES" secondAttribute="top" id="8xz-5J-Q0b"/>
+                                                <constraint firstAttribute="bottom" secondItem="bc3-aa-xNs" secondAttribute="bottom" id="ABz-kw-ZkK"/>
+                                                <constraint firstItem="bc3-aa-xNs" firstAttribute="leading" secondItem="s9d-1Y-yES" secondAttribute="leadingMargin" id="Bni-V4-621"/>
+                                                <constraint firstItem="bc3-aa-xNs" firstAttribute="top" secondItem="Gte-63-cpg" secondAttribute="bottom" constant="14" id="EoW-Qe-4MB"/>
+                                                <constraint firstItem="u57-iP-qVV" firstAttribute="top" secondItem="s9d-1Y-yES" secondAttribute="top" constant="16" id="Ep1-EB-ZEk"/>
+                                                <constraint firstItem="u57-iP-qVV" firstAttribute="leading" secondItem="g28-EB-8wU" secondAttribute="trailing" constant="8" id="Es3-I4-gg7"/>
+                                                <constraint firstItem="Gte-63-cpg" firstAttribute="leading" secondItem="s9d-1Y-yES" secondAttribute="leading" constant="8" id="GcW-Mz-Ude"/>
+                                                <constraint firstItem="tNC-DT-o00" firstAttribute="top" secondItem="g28-EB-8wU" secondAttribute="top" id="Lqd-w2-am1"/>
+                                                <constraint firstItem="tNC-DT-o00" firstAttribute="top" secondItem="s9d-1Y-yES" secondAttribute="top" id="WLh-YM-da5"/>
+                                                <constraint firstItem="g28-EB-8wU" firstAttribute="leading" secondItem="s9d-1Y-yES" secondAttribute="leading" constant="8" id="eGa-Wv-ziK"/>
+                                                <constraint firstItem="tNC-DT-o00" firstAttribute="leading" secondItem="g28-EB-8wU" secondAttribute="trailing" constant="8" id="kqT-QZ-TQN"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="tNC-DT-o00" id="gS8-zD-4CZ"/>

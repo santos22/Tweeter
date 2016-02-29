@@ -15,25 +15,15 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     var tweetDetails: TweetDetailCell!
     var tweetStats: TweetStatsCell!
     var tweetActions: TweetActionCell!
+    var replyToUser: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        
-//        if let tweet = self.tweet {
-//            print(tweet.user!.profileImageUrl)
-//            print(tweet.user?.name)
-//            print(tweet.user?.screenName)
-//            print(tweet.text)
-//            print(tweet.createdAtString)
-//            print(tweet.likeCount)
-//            print(tweet.retweetCount)
-//            
-//        }
-
-        // Do any additional setup after loading the view.
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
     }
 
     @IBAction func goBack(sender: AnyObject) {
@@ -52,8 +42,6 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        // Have to return cell each time because typing isn't very dynamic
         switch (indexPath.row) {
         case 0: //Tweet content cell
             let cell = tableView.dequeueReusableCellWithIdentifier("DetailsCell") as! TweetDetailCell
@@ -67,9 +55,15 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             return cell
         case 2: // Tweet action cell
             let cell = tableView.dequeueReusableCellWithIdentifier("ActionCell") as! TweetActionCell
-            // Add actions for buttons
-            // cell.replyButton.addTarget(self, action: "replyPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+
             cell.tweet = tweet
+            
+            let replyTapAction = UITapGestureRecognizer(target: self, action: "reply:")
+            cell.replyImage.tag = indexPath.row
+            cell.replyImage.userInteractionEnabled = true
+            replyToUser = (cell.tweet.user?.screenName)!
+            cell.replyImage.addGestureRecognizer(replyTapAction)
+            
             let retweetTapAction = UITapGestureRecognizer(target: self, action: "retweet:")
             cell.retweetImage.tag = indexPath.row
             cell.retweetImage.userInteractionEnabled = true
@@ -96,10 +90,6 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func retweet(sender: UITapGestureRecognizer){
-//        if sender.state != .Ended{
-//            return
-//        }
-        
         if sender.state != .Began {
             TwitterClient.sharedInstance.retweet(tweet.tweetID!, params: nil, completion: { (retweetCount) -> () in
                 //self.tweet.retweetCount! += 1
@@ -110,10 +100,6 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func like(sender: UITapGestureRecognizer){
-        //        if sender.state != .Ended{
-        //            return
-        //        }
-        
         if sender.state != .Began {
             TwitterClient.sharedInstance.like(tweet.tweetID!, params: nil, completion: { (retweetCount) -> () in
                 //self.tweet.likeCount! += 1
@@ -123,6 +109,14 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
+    func reply(sender: UITapGestureRecognizer){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("ComposeTweetViewController") as! ComposeTweetViewController
+        //vc.composeTextView.text = "@hey"
+
+        print("User is: \(replyToUser)")
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
