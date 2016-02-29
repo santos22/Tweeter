@@ -10,10 +10,10 @@ import UIKit
 
 class TweetStatsCell: UITableViewCell {
     
-    @IBOutlet weak var retweetCount: UILabel!
-    @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var retweetCount: UILabel! // numbers
+    @IBOutlet weak var retweetLabel: UILabel! // RETWEET
     @IBOutlet weak var likeCount: UILabel!
-    @IBOutlet weak var llikeLabel: UILabel!
+    @IBOutlet weak var llikeLabel: UILabel! // LIKES
     
     var tweet: Tweet? {
         didSet {

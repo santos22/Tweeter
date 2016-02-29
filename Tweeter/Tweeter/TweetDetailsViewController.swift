@@ -70,8 +70,22 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             // Add actions for buttons
             // cell.replyButton.addTarget(self, action: "replyPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.tweet = tweet
-//            cell.retweetButton.addTarget(self, action: "retweetPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-//            cell.likeButton.addTarget(self, action: "likePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            let retweetTapAction = UITapGestureRecognizer(target: self, action: "retweet:")
+            cell.retweetImage.tag = indexPath.row
+            cell.retweetImage.userInteractionEnabled = true
+            cell.retweetImage.addGestureRecognizer(retweetTapAction)
+            if tweet.hasRetweeted{
+                cell.retweetImage.highlighted = true
+            }
+            
+            let likeTapAction = UITapGestureRecognizer(target: self, action: "like:")
+            cell.likeImage.tag = indexPath.row
+            cell.likeImage.userInteractionEnabled = true
+            cell.likeImage.addGestureRecognizer(likeTapAction)
+            if tweet.hasLiked{
+                cell.likeImage.highlighted = true
+            }
+            
             tweetActions = cell
             return cell
         default:
@@ -79,6 +93,34 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             return cell
         }
         
+    }
+    
+    func retweet(sender: UITapGestureRecognizer){
+//        if sender.state != .Ended{
+//            return
+//        }
+        
+        if sender.state != .Began {
+            TwitterClient.sharedInstance.retweet(tweet.tweetID!, params: nil, completion: { (retweetCount) -> () in
+                //self.tweet.retweetCount! += 1
+                self.tweet.hasRetweeted = true
+                self.tweetStats.retweetCount.text = String(self.tweet.retweetCount! + 1)
+            })
+        }
+    }
+    
+    func like(sender: UITapGestureRecognizer){
+        //        if sender.state != .Ended{
+        //            return
+        //        }
+        
+        if sender.state != .Began {
+            TwitterClient.sharedInstance.like(tweet.tweetID!, params: nil, completion: { (retweetCount) -> () in
+                //self.tweet.likeCount! += 1
+                self.tweet.hasLiked = true
+                self.tweetStats.likeCount.text = String(self.tweet.likeCount! + 1)
+            })
+        }
     }
     
 
