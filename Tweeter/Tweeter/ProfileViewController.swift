@@ -60,17 +60,17 @@ class ProfileViewController: UIViewController {
 //    }
 //    
 //    func tableView(timelineTableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = timelineTableView.dequeueReusableCellWithIdentifier("timelineTweet", forIndexPath: indexPath) as! TweetCell
+//        let cell = timelineTableView.dequeueReusableCellWithIdentifier("profileTweet", forIndexPath: indexPath) as! ProfileCell
 //        let tweet = self.tweets![indexPath.row]
 //        cell.tweet = tweet
 //        let profileImageURL = NSURL(string: (tweet.user?.profileImageUrl)!)
 //        cell.profileImage.setImageWithURL(profileImageURL!)
 //        cell.name.text = tweet.user?.name
 //        cell.screenName.text = tweet.user?.screenName
-//        cell.timestamp.text = tweet.createdAtString
-//        cell.tweetText.text = tweet.text
-//        cell.retweetLabel.text = String(tweet.retweetCount!)
-//        cell.likeLabel.text = String(tweet.likeCount!)
+//        //cell.timestamp.text = tweet.createdAtString
+//        //cell.tweetText.text = tweet.text
+//        //cell.retweetLabel.text = String(tweet.retweetCount!)
+//        //cell.likeLabel.text = String(tweet.likeCount!)
 //        
 //        return cell
 //    }

@@ -16,7 +16,7 @@ class ComposeTweetViewController: UIViewController {
         super.viewDidLoad()
         composeTextView.layer.borderWidth = 0.5
         composeTextView.layer.cornerRadius = 5
-        composeTextView.text = "What's happening?"
+        //composeTextView.text = "What's happening?"
         composeTextView.textColor = UIColor.lightGrayColor()
         composeTextView.becomeFirstResponder()
 
@@ -28,19 +28,19 @@ class ComposeTweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func textViewDidBeginEditing(composeTextView: UITextView) {
-        if composeTextView.textColor == UIColor.lightGrayColor() {
-            composeTextView.text = nil
-            composeTextView.textColor = UIColor.blackColor()
-        }
-    }
-    
-    func textViewDidEndEditing(composeTextView: UITextView) {
-        if composeTextView.text.isEmpty {
-            composeTextView.text = "What's happening?"
-            composeTextView.textColor = UIColor.lightGrayColor()
-        }
-    }
+//    func textViewDidBeginEditing(composeTextView: UITextView) {
+//        if composeTextView.textColor == UIColor.lightGrayColor() {
+//            composeTextView.text = nil
+//            composeTextView.textColor = UIColor.blackColor()
+//        }
+//    }
+//    
+//    func textViewDidEndEditing(composeTextView: UITextView) {
+//        if composeTextView.text.isEmpty {
+//            composeTextView.text = "What's happening?"
+//            composeTextView.textColor = UIColor.lightGrayColor()
+//        }
+//    }
     
     @IBAction func cancelTweet(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
