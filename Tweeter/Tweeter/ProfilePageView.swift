@@ -27,8 +27,7 @@ class ProfilePageView: UIView {
             let profilePath = NSURL(string: (user?.profileImageUrl)!)
             profileImageView.setImageWithURL(profilePath!)
             name.text = user?.name
-            username.text = user?.name
-            tagline.text = user?.tagLine
+            username.text = user?.screenName
             followingCount.text = user!.followingCountString
             followersCount.text = user!.followerCountString
         }
