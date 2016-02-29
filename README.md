@@ -95,20 +95,23 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
+1. Reusing the table cells for another table view that will essentially display the same thing
 2. 
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/OikSPY5.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+1. For some reason, the segues I was performing appear to be modal; I am certain that I used "push" as the action whenever I created the segues, but they didn't work. Because of this, I was unable to switch between view controllers efficiently and had to implement a "go back function" for UIButtons in the top left
+2. Towards the end, I could barely get the app working because it was having trouble getting my home time line...this was very frustrating.
 
 ## License
 
