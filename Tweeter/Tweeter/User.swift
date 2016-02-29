@@ -20,6 +20,13 @@ class User: NSObject {
     var tagLine: String?
     var dictionary: NSDictionary?
     var userID: String?
+    var profileBannerUrl: String?
+    var tweetCount: NSNumber?
+    var tweetCountString: String?
+    var followerCount: NSNumber?
+    var followerCountString: String?
+    var followingCount: NSNumber?
+    var followingCountString: String?
     
     // constructor
     init(dictionary: NSDictionary) {
@@ -29,8 +36,16 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenName = "\(at)" + String(dictionary["screen_name"] as! String)
         profileImageUrl = dictionary["profile_image_url"] as? String
+        profileBannerUrl = dictionary["profile_banner_url"] as? String
         tagLine = dictionary["description"] as? String
         userID = dictionary["id_str"] as? String
+        
+        tweetCount = dictionary["statuses_count"] as? NSNumber
+        tweetCountString =  String(tweetCount)
+        followerCount = dictionary["followers_count"] as? NSNumber
+        followerCountString = String(followerCount as NSNumber!)
+        followingCount = dictionary["friends_count"] as? NSNumber
+        followingCountString = String(followingCount as NSNumber!)
     }
     
     func logout() {

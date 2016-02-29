@@ -12,11 +12,14 @@ class ProfileViewController: UIViewController {
     
     var user:User?
     var tweets:[Tweet]?
-    
     var tweet: Tweet!
+    
+    @IBOutlet weak var profilePageView: ProfilePageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profilePageView.user = user
         
         if let user = self.user{
             print(user.userID)
